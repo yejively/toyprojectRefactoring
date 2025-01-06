@@ -5,7 +5,12 @@
     "build": "turbo build",
     "dev": "turbo dev",
     "lint": "turbo lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\""
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "dev:basic-state": "turbo dev --filter basic-state",
+    "dev:effect-master": "turbo dev --filter effect-master",
+    "dev:props-drilling": "turbo dev --filter props-drilling",
+    "dev:redux-only": "turbo dev --filter redux-only",
+    "dev:hybrid-state": "turbo dev --filter hybrid-state"
   },
   "devDependencies": {
     "prettier": "^3.2.5",
@@ -15,7 +20,7 @@
   "engines": {
     "node": ">=18"
   },
-  "packageManager": "npm@10.9.0",
+  "packageManager": "pnpm@9.15.2",
   "workspaces": [
     "apps/*",
     "packages/*"

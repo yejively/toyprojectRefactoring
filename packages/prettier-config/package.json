@@ -1,0 +1,9 @@
+{
+  "name": "@shared/prettier-config",
+  "version": "0.0.0",
+  "type": "module",
+  "main": "index.mjs",
+  "dependencies": {
+    "prettier": "^3.2.5"
+  }
+}

@@ -1,84 +1,81 @@
-# Turborepo starter
+# 상태 관리 학습을 위한 React 프로젝트
 
-This is an official starter Turborepo.
+## 프로젝트 소개
 
-## Using this example
+이 프로젝트는 React의 다양한 상태 관리 방식을 학습하기 위한 모노레포 구조의 프로젝트.
 
-Run the following command:
+## 프로젝트 구조
 
-```sh
-npx create-turbo@latest
-```
+project/
+├── apps/
+│ ├── basic-state/ # useState, useEffect 기본
+│ ├── effect-master/ # useEffect 심화
+│ ├── props-drilling/ # Props 전달 패턴
+│ ├── redux-only/ # Redux 전역 상태 관리
+│ └── hybrid-state/ # Redux + 지역 상태 혼합
+└── packages/ # 공유 패키지
 
-## What's inside?
+## 설치 및 실행
 
-This Turborepo includes the following packages/apps:
+### 사전 요구사항
 
-### Apps and Packages
+- Node.js >=18
+- pnpm 9.15.2
 
-- `docs`: a [Next.js](https://nextjs.org/) app
-- `web`: another [Next.js](https://nextjs.org/) app
-- `@repo/ui`: a stub React component library shared by both `web` and `docs` applications
-- `@repo/eslint-config`: `eslint` configurations (includes `eslint-config-next` and `eslint-config-prettier`)
-- `@repo/typescript-config`: `tsconfig.json`s used throughout the monorepo
+### 설치
 
-Each package/app is 100% [TypeScript](https://www.typescriptlang.org/).
+- pnpm install
 
-### Utilities
+### 실행
 
-This Turborepo has some additional tools already setup for you:
+# 기본 상태 관리 프로젝트
 
-- [TypeScript](https://www.typescriptlang.org/) for static type checking
-- [ESLint](https://eslint.org/) for code linting
-- [Prettier](https://prettier.io) for code formatting
+pnpm dev:basic-state
 
-### Build
+# Effect 마스터 프로젝트
 
-To build all apps and packages, run the following command:
+pnpm dev:effect-master
 
-```
-cd my-turborepo
-pnpm build
-```
+# Props 드릴링 프로젝트
 
-### Develop
+pnpm dev:props-drilling
 
-To develop all apps and packages, run the following command:
+# Redux 전용 프로젝트
 
-```
-cd my-turborepo
-pnpm dev
-```
+pnpm dev:redux-only
 
-### Remote Caching
+# 하이브리드 상태 관리 프로젝트
 
-> [!TIP]
-> Vercel Remote Cache is free for all plans. Get started today at [vercel.com](https://vercel.com/signup?/signup?utm_source=remote-cache-sdk&utm_campaign=free_remote_cache).
+pnpm dev:hybrid-state
 
-Turborepo can use a technique known as [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching) to share cache artifacts across machines, enabling you to share build caches with your team and CI/CD pipelines.
+## 프로젝트 설명
 
-By default, Turborepo will cache locally. To enable Remote Caching you will need an account with Vercel. If you don't have an account you can [create one](https://vercel.com/signup?utm_source=turborepo-examples), then enter the following commands:
+1. Basic State
 
-```
-cd my-turborepo
-npx turbo login
-```
+React의 기본적인 상태 관리에 중점을 둔 첫 번째 프로젝트
+useState와 useEffect 훅을 모두 구현
+React의 기본적인 상태 관리 패턴을 학습
 
-This will authenticate the Turborepo CLI with your [Vercel account](https://vercel.com/docs/concepts/personal-accounts/overview).
+2. Effect Master
 
-Next, you can link your Turborepo to your Remote Cache by running the following command from the root of your Turborepo:
+basic-state 프로젝트를 기반으로 구축
+useEffect 구현에만 집중
+다양한 사용 사례와 사이드 이펙트 패턴을 학습
 
-```
-npx turbo link
-```
+3. Props Drilling
 
-## Useful Links
+effect-master 프로젝트를 확장
+컴포넌트 계층 구조와 props 전달 방식을 보여줌
+컴포넌트 트리를 통한 상태 관리 방법을 설명
 
-Learn more about the power of Turborepo:
+4. Redux Only
 
-- [Tasks](https://turbo.build/repo/docs/core-concepts/monorepos/running-tasks)
-- [Caching](https://turbo.build/repo/docs/core-concepts/caching)
-- [Remote Caching](https://turbo.build/repo/docs/core-concepts/remote-caching)
-- [Filtering](https://turbo.build/repo/docs/core-concepts/monorepos/filtering)
-- [Configuration Options](https://turbo.build/repo/docs/reference/configuration)
-- [CLI Usage](https://turbo.build/repo/docs/reference/command-line-reference)
+Redux를 사용한 중앙 집중식 상태 관리 구현
+컴포넌트 상태를 Redux 스토어로 이동
+Redux 패턴과 모범 사례를 학습
+
+5. Hybrid State
+
+Redux와 로컬 컴포넌트 상태를 결합
+전역 상태와 로컬 상태의 적절한 사용 시점을 보여줌
+실용적인 상태 관리 패턴을 학습
