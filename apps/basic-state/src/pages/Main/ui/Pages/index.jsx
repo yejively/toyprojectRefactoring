@@ -1,12 +1,17 @@
-import { FontColor } from './style.css';
-import { ColorTag } from './style';
+import { container, calculator } from './style.css';
+import Button from './Button';
+import History from './History';
+import Display from './Display';
 
 const Main = () => {
     return (
-        <>
-            <ColorTag>테스트1</ColorTag>
-            <div className={FontColor}>테스트</div>
-        </>
+        <div className={container}>
+            <div className={calculator}>
+                <History />
+                <Display />
+                <Button />
+            </div>
+        </div>
     );
 };
 
