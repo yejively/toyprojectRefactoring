@@ -1,0 +1,17 @@
+dependencies
+
+- redux (redux: 5.0.1)
+Redux의 핵심 라이브러리, 상태 관리 기능을 제공
+createStore() 기본 api를 제공
+
+- react-redux (react-redux: 9.1.2)
+Redux를 React와 연결하는 라이브러리, 상태를 쉽게 사용할 수 있는 훅 제공
+Provider, useSelector, useDispath
+
+- redux-devtools/extension (redux-devtools/extension: 3.3.0)
+Redux DevTools(개발자 도구)와 연결하여 상태 변경을 시각적으로 확인하게하는 라이브러리
+Redux의 store를 DevTools에서 추적하고, 액션 디스패치 및 상태 변경을 기록
+
+- reduxjs/toolkit (reduxjs/toolkit: 2.2.6)
+Redux의 보일러 플레이트(반복되는 코드)를 줄이고, 더 쉬운 상태 관리 방법을 제공하는 공식 툴킷
+createSlice(), configureStore(), createAsyncThunk() 등의 api를 제공
