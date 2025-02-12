@@ -2,9 +2,9 @@ import { React, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { setValue } from './slice';
 import { container, calculator } from './style.css';
-import Button from './Button';
-import History from './History';
-import Display from './Display';
+import Button from './Button/Button';
+import History from './Fields/History';
+import Display from './Fields/Display';
 
 const Main = () => {
     const input = useSelector(state => state.input);
@@ -22,7 +22,7 @@ const Main = () => {
         <div className={container}>
             <div className={calculator}>
                 <History text={input.history} />
-                <Display text={input.value} />
+                <Display text={input.display} />
                 <Button click={handleInputAction} />
             </div>
         </div>

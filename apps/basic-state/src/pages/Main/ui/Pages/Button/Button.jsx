@@ -1,6 +1,6 @@
 import React from 'react';
 import buttons from './config';
-import * as style from './style.css';
+import * as style from '../style.css';
 
 const getButtonVariant = value => {
     if (['÷', '×', '-', '+'].includes(value)) return 'operator';
