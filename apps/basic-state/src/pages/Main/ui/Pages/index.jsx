@@ -14,15 +14,19 @@ const Main = () => {
         console.log('input: ', input);
     }, [input]);
 
+    // useEffect(() => {
+    //     if (Number(input.history))
+    // }, [input.history]);
+
     const handleInputAction = value => {
-        dispatch(setValue(value));
+        dispatch(setValue(value)); // action이 발생 -> dispatcher에서 받음
     };
 
     return (
         <div className={container}>
             <div className={calculator}>
                 <History text={input.history} />
-                <Display text={input.display} />
+                <Display />
                 <Button click={handleInputAction} />
             </div>
         </div>
