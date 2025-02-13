@@ -1,20 +1,26 @@
 import React from 'react';
+import { useDispatch } from 'react-redux';
+import getButtonVariant from './style';
 import buttons from './config';
 import * as style from '../style.css';
+import { setValue } from '../slice';
 
-const getButtonVariant = value => {
-    if (['÷', '×', '-', '+'].includes(value)) return 'operator';
-    if (value === 'C') return 'init';
-    if (value === '=') return 'equal';
-    if (value === 'del') return 'delete';
-};
+const Button = () => {
+    const dispatch = useDispatch();
 
-const Button = ({ click }) => {
+    const handleInputAction = value => {
+        dispatch(setValue(value));
+    };
+
     return (
         <div className={style.buttons}>
             {buttons.map(({ display, value }) => {
                 return (
-                    <button key={value} className={style.button({ value: getButtonVariant(value) })} onClick={() => click(value)}>
+                    <button
+                        key={value}
+                        className={style.button({ value: getButtonVariant(value) })}
+                        onClick={() => handleInputAction(value)}
+                    >
                         {display}
                     </button>
                 );

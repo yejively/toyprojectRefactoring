@@ -18,35 +18,41 @@ const resetCalculate = (state) => {
 };
 
 const deleteLastValue = (state, lastHistory, isLastOperator) => {
-    if (isLastOperator) state.history.pop();
+    if (isLastOperator || lastHistory.length === 1) state.history.pop();
     else state.history[state.history.length - 1] = lastHistory.slice(0, -1);
+};
+
+const processInput = (state, value, isNewOperator, isLastOperator, lastHistory) => {
+    if (isNewOperator) {
+        if (isLastOperator) changeOperator(state, value);
+        else state.history.push(value);
+    } else if (!isLastOperator && lastHistory !== '') {
+        appendToNumber(state, value, lastHistory);
+    } else {
+        state.history.push(value);
+    }
 };
 
 const slice = createSlice({
     name: 'input',
     initialState: { value: null, history: [] },
     reducers: {
-        setValue: (state, action) => {
+        setValue: (state, action) => { // setValue 하나의 액션으로 모든 기능을 처리하고 있음.
             const value = action.payload;
             const lastHistory = state.history.at(-1) || '';
             const isLastOperator = OPERATORS.includes(lastHistory);
             const isNewOperator = OPERATORS.includes(value);
 
-            if (!state.history.length && !Number(value)) return; // 첫 입력 값이 피연산자가 아닌 경우 리턴
+            if (!state.history.length && !Number(value)) return; // 첫 입력 값이 피연산자가 아닌 경우, 0인 경우 리턴
 
             state.value = value;
 
-            if (isNewOperator) { // 연산자 입력
-                if (isLastOperator) changeOperator(state, value);
-                else state.history.push(value);
-            } else if (value === INITALIZE) { // 초기화
+            if (value === INITALIZE) {
                 resetCalculate(state);
-            } else if (value === DELETE) { // 삭제
+            } else if (value === DELETE) {
                 deleteLastValue(state, lastHistory, isLastOperator);
-            } else if (!isLastOperator && lastHistory !== '') { // 피연산자 입력
-                appendToNumber(state, value, lastHistory);
-            } else { // 첫 피연산자 입력
-                state.history.push(value);
+            } else {
+                processInput(state, value, isNewOperator, isLastOperator);
             }
         },
     },
