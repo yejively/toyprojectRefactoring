@@ -1,10 +1,9 @@
 import { configureStore } from '@reduxjs/toolkit';
 import slice from '@/pages/Main/ui/Pages/slice';
 
-// 스토어 생성
-const store = configureStore({
+const store = configureStore({ // store 설정 (상태관리 중앙 저장소)
     reducer: {
-        input: slice, // key값 - slice의 name, value값 - 해당 리듀서에 맞게 임의 작성.
+        input: slice,
     },
 });
 
