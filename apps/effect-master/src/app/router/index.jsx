@@ -7,7 +7,7 @@ function RouterData() {
     return (
         <BrowserRouter>
             <Routes>
-                <Route path="/" element={<MainPage />} />
+                <Route path="/calculator" element={<MainPage />} />
             </Routes>
         </BrowserRouter>
     );

@@ -8,6 +8,7 @@ const Main = () => {
     const dispatch = useDispatch();
     const isTest = useSelector(state => state.main.isTest);
     const isSetTest = useSelector(state => state.main.isSetTest);
+
     const test = () => {
         dispatch(mainSlice.actions.dataChange(!isTest));
     };
