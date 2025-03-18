@@ -22,7 +22,7 @@ export const button = recipe({
             },
         },
     },
-    variants: { // button의 value 에따라 스타일 설정
+    variants: {
         value: {
             default: { backgroundColor: '#e1e4e5', color: '#000' },
             operator: { backgroundColor: '#ff9404', color: '#fff' },
@@ -37,7 +37,4 @@ export const button = recipe({
             },
         },
     },
-    defaultVariants: { // variants 속성의 기본값 설정 
-        value: 'default',
-    }
 });

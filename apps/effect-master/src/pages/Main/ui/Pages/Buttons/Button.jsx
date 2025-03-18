@@ -3,10 +3,13 @@ import { Buttons } from './config';
 import { buttonContainer, button } from './style.css';
 
 const Button = ({ numberClick, operatorClick, initClick, deleteClick, equalClick }) => {
-    const getClickEvent = ({ name, type }) => {
+    const getClickEvent = (item) => {
+        const { type } = item.event;
+        const { value } = item;
+
+        if (type === 'operator') return operatorClick(value);
+        if (type === 'number') return numberClick(value);
         if (type === 'init') return initClick();
-        if (type === 'operator') return operatorClick(name);
-        if (type === 'default') return numberClick(name);
         if (type === 'delete') return deleteClick();
         if (type === 'equal') return equalClick();
     };
@@ -14,13 +17,13 @@ const Button = ({ numberClick, operatorClick, initClick, deleteClick, equalClick
     return (
         <div className={buttonContainer}>
             {Buttons.map(item =>
-                item.isEvent ? (
-                    <button key={item.name} className={button({ value: item.type })} onClick={() => getClickEvent(item)}>
-                        {item.name}
+                item.event.useEvent ? (
+                    <button key={item.value} className={button({ value: item.style })} onClick={() => getClickEvent(item)}>
+                        {item.value}
                     </button>
                 ) : (
-                    <button key={item.name} className={button({ value: item.type })}>
-                        {item.name}
+                    <button key={item.value} className={button({ value: item.style })}>
+                        {item.value}
                     </button>
                 ),
             )}
