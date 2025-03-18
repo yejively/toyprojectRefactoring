@@ -6,11 +6,12 @@ import { container, calculator } from './style.css';
 const OPERATOR = ['÷', '×', '-', '+']; // Main 컴포넌트가 리렌더링될 때 재선언되지 않음.
 
 const Main = () => {
-    const [number, setNumber] = useState('');
-    const [operator, setOperator] = useState('');
     const [history, setHistory] = useState('');
     const [display, setDisplay] = useState('');
     const [result, setResult] = useState('');
+    const [expressionState, setExpressionState] = useState({ numArr: [], operArr: [] });
+    const [number, setNumber] = useState('');
+    const [operator, setOperator] = useState('');
     const [init, setInit] = useState(false);
     const [del, setDel] = useState(false);
     const [equal, setEqual] = useState(false);
@@ -34,7 +35,7 @@ const Main = () => {
     //     }
     // };
 
-    // // 연산자 우선순위 처리 함수
+    // 연산자 우선순위 처리 함수
     // const handleOperatorPrecedence = (numArr, operArr, operatorsToProcess) => {
     //     let i = 0;
     //     while (i < operArr.length) {
@@ -47,41 +48,6 @@ const Main = () => {
     //             i++;
     //         }
     //     }
-    // };
-
-    // 결과값 계산 함수
-    // const calculateFinalResult = () => {
-    //     if (!history || OPERATOR.includes(history.slice(-1))) return;
-
-    //     try {
-    //         setHistory(prev => `${prev}=`);
-
-    //         const numArr = history.split(/[+\-×÷]/);
-    //         const operArr = history.split(/\d+/).filter(Boolean);
-
-    //         handleOperatorPrecedence(numArr, operArr, ['×', '÷']);
-    //         handleOperatorPrecedence(numArr, operArr, ['+', '-']);
-
-    //         setResult(numArr[0]);
-    //     } catch {
-    //         setResult('Error');
-    //     }
-    // };
-
-    // const deleteLastCharacter = () => {
-    //     if (history && Number(history.slice(-1))) {
-    //         setDisplay(prev => prev.slice(0, -1));
-    //         setHistory(prev => prev.slice(0, -1));
-    //     }
-    // };
-
-    // const initializeCalculator = () => {
-    //     setNumber('');
-    //     setOperator('');
-    //     setResult('');
-    //     setHistory('');
-    //     setDisplay('');
-    //     setTrigger({ type: null });
     // };
 
     // 숫자 입력 감지
@@ -112,19 +78,57 @@ const Main = () => {
     // init 클릭 감지
     useEffect(() => {
         if (!init) return;
+
+        setNumber('');
+        setOperator('');
+        setResult('');
+        setHistory('');
+        setDisplay('');
         setInit(false);
     }, [init]);
 
     // del 클릭 감지
     useEffect(() => {
         if (!del) return;
+
+        if (history) {
+            setDisplay(prev => prev.slice(0, -1));
+            setHistory(prev => prev.slice(0, -1));
+        }
         setDel(false);
     }, [del]);
+
+    useEffect(() => {
+        if (!expressionState.numArr.length) return;
+
+        console.log(expressionState);
+
+        setExpressionState({ numArr: [], operArr: [] });
+    }, [expressionState]);
 
     // equal 클릭 감지
     useEffect(() => {
         if (!equal) return;
-        setEqual(false);
+
+        try {
+            if (history && !OPERATOR.includes(history.slice(-1))) {
+                setHistory(prev => `${prev}=`);
+
+                const numArr = history.split(/[+\-×÷]/);
+                const operArr = history.split(/\d+/).filter(Boolean);
+
+                setExpressionState({ numArr, operArr });
+
+                // handleOperatorPrecedence(numArr, operArr, ['×', '÷']);
+                // handleOperatorPrecedence(numArr, operArr, ['+', '-']);
+
+                // setResult(numArr[0]);
+            }
+        } catch {
+            setResult('Error');
+        } finally {
+            setEqual(false);
+        }
     }, [equal]);
 
     return (
