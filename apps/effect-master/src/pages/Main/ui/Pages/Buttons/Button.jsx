@@ -18,11 +18,11 @@ const Button = ({ numberClick, operatorClick, initClick, deleteClick, equalClick
         <div className={buttonContainer}>
             {Buttons.map(item =>
                 item.event.useEvent ? (
-                    <button key={item.value} className={button({ value: item.style })} onClick={() => getClickEvent(item)}>
+                    <button key={item.value} className={button[item.style]} onClick={() => getClickEvent(item)}>
                         {item.value}
                     </button>
                 ) : (
-                    <button key={item.value} className={button({ value: item.style })}>
+                    <button key={item.value} className={button[item.style]}>
                         {item.value}
                     </button>
                 ),

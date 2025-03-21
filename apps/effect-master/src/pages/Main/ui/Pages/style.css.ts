@@ -5,7 +5,6 @@ const defaultSetting = {
     margin: 0,
     padding: 0,
     height: '100%',
-    boxSizing: 'border-box' as const,
 };
 
 // 전역 스타일 설정
