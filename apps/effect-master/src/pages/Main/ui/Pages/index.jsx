@@ -17,23 +17,23 @@ const Main = () => {
     const [equal, setEqual] = useState(false);
 
     // 계산 함수
-    // const performOperation = (oper, numOne, numTwo) => {
-    //     const n1 = Number(numOne);
-    //     const n2 = Number(numTwo);
+    const performOperation = (oper, numOne, numTwo) => {
+        const n1 = Number(numOne);
+        const n2 = Number(numTwo);
 
-    //     switch (oper) {
-    //         case '+':
-    //             return n1 + n2;
-    //         case '-':
-    //             return n1 - n2;
-    //         case '×':
-    //             return n1 * n2;
-    //         case '÷':
-    //             return n2 !== 0 ? n1 / n2 : 'Error';
-    //         default:
-    //             return 'Error';
-    //     }
-    // };
+        switch (oper) {
+            case '+':
+                return n1 + n2;
+            case '-':
+                return n1 - n2;
+            case '×':
+                return n1 * n2;
+            case '÷':
+                return n2 !== 0 ? n1 / n2 : 'Error';
+            default:
+                return 'Error';
+        }
+    };
 
     // 연산자 우선순위 처리 함수
     // const handleOperatorPrecedence = (numArr, operArr, operatorsToProcess) => {
@@ -50,6 +50,50 @@ const Main = () => {
     //     }
     // };
 
+    useEffect(() => {
+        if (!expressionState.numArr.length) return;
+        const { numArr, operArr } = expressionState;
+        const operatorPriority = { '×': 1, '÷': 1, '+': 2, '-': 2 };
+
+        const i = 0;
+        while (i < operArr.length) {
+            const minPriority = Math.min(...operArr.map(op => operatorPriority[op]));
+            console.log("minPriority: ", minPriority);
+            const index = operArr.findIndex(op => operatorPriority[op] === minPriority);
+
+            numArr[index] = performOperation(operArr[index], numArr[index], numArr[index + 1]);
+            numArr.splice(index + 1, 1);
+            operArr.splice(index, 1);
+        }
+
+        setResult(numArr[0]); // 최종 결과 설정
+    }, [expressionState]);
+
+    // equal 클릭 감지
+    useEffect(() => {
+        if (!equal) return;
+
+        try {
+            if (history && !OPERATOR.includes(history.slice(-1))) {
+                setHistory(prev => `${prev}=`);
+
+                const numArr = history.split(/[+\-×÷]/);
+                const operArr = history.split(/\d+/).filter(Boolean);
+
+                setExpressionState({ numArr, operArr });
+
+                // handleOperatorPrecedence(numArr, operArr, ['×', '÷']);
+                // handleOperatorPrecedence(numArr, operArr, ['+', '-']);
+
+                // setResult(numArr[0]);
+            }
+        } catch {
+            setResult('Error');
+        } finally {
+            setEqual(false);
+        }
+    }, [equal]);
+
     // 숫자 입력 감지
     useEffect(() => {
         if (!number.length) return;
@@ -63,13 +107,16 @@ const Main = () => {
     useEffect(() => {
         if (!history || !operator.length) return;
 
-        if (OPERATOR.includes(history.slice(-1))) { // 연산자 교체
+        if (OPERATOR.includes(history.slice(-1))) {
+            // 연산자 교체
             setHistory(prev => prev.slice(0, -1) + operator);
-        } else if (result) { // 결과 값이 있고 연산자 클릭 시 결과값에 새로운 계산 시작
+        } else if (result) {
+            // 결과 값이 있고 연산자 클릭 시 결과값에 새로운 계산 시작
             setHistory(result + operator);
             setResult('');
             setDisplay('');
-        } else { // 연산자 입력 처리
+        } else {
+            // 연산자 입력 처리
             setHistory(prev => prev + operator);
             setDisplay('');
         }
@@ -105,31 +152,6 @@ const Main = () => {
 
         setExpressionState({ numArr: [], operArr: [] });
     }, [expressionState]);
-
-    // equal 클릭 감지
-    useEffect(() => {
-        if (!equal) return;
-
-        try {
-            if (history && !OPERATOR.includes(history.slice(-1))) {
-                setHistory(prev => `${prev}=`);
-
-                const numArr = history.split(/[+\-×÷]/);
-                const operArr = history.split(/\d+/).filter(Boolean);
-
-                setExpressionState({ numArr, operArr });
-
-                // handleOperatorPrecedence(numArr, operArr, ['×', '÷']);
-                // handleOperatorPrecedence(numArr, operArr, ['+', '-']);
-
-                // setResult(numArr[0]);
-            }
-        } catch {
-            setResult('Error');
-        } finally {
-            setEqual(false);
-        }
-    }, [equal]);
 
     return (
         <div className={container}>
