@@ -2,8 +2,13 @@ import { createSlice } from '@reduxjs/toolkit';
 import { TestApi } from '@/entities/Main';
 
 export const initialState = {
-    isTest: false,
-    isSetTest: null,
+    history: '',
+    display: '',
+    result: '',
+    operator: { value: '', type: null },
+    init: false,
+    del: false,
+    equal: false,
 };
 
 const mainSlice = createSlice({
@@ -11,8 +16,27 @@ const mainSlice = createSlice({
     initialState,
     reducers: {
         mainStoreReset: () => initialState,
-        dataChange: (state, action) => {
-            state.isTest = action.payload;
+        updateNumber: (state, action) => {
+            state.display = action.payload;
+            state.history += action.payload;
+        },
+        updateOperator: (state, action) => {
+            const { value, type } = action.payload;
+            state.operator = value;
+
+            if (type === 'replace') {
+                state.history = state.history.slice(0, -1) + value;
+            } else {
+                state.history += value;
+            }
+        },
+        updateHistory: state => {
+            state.display = '';
+            state.history = state.history.slice(0, -1);
+        },
+        updateResult: (state, action) => {
+            state.result = action.payload;
+            state.history = `${state.history}=`;
         },
     },
     extraReducers: builder =>
