@@ -1,34 +1,20 @@
-import React from 'react';
-import { Buttons } from './config';
-import { buttonContainer, button } from './style.css';
+import { useDispatch } from 'react-redux';
+import { mainSlice } from '@/entities/Main';
+import { button } from './style.css';
 
-const Button = ({ numberClick, operatorClick, initClick, deleteClick, equalClick }) => {
-    const getClickEvent = item => {
-        const { type } = item.event;
-        const { value } = item;
+const Button = ({ info }) => {
+    const { value, style, event: { useEvent, type } } = info;
+    const dispatch = useDispatch();
 
-        if (type === 'operator') return operatorClick(value);
-        if (type === 'number') return numberClick(value);
-        if (type === 'init') return initClick();
-        if (type === 'delete') return deleteClick();
-        if (type === 'equal') return equalClick();
-    };
+    if (useEvent) {
+        return (
+            <button className={button[style]} onClick={() => dispatch(mainSlice.actions.buttonAction({ value, type }))}>
+                {value}
+            </button>
+        );
+    }
 
-    return (
-        <div className={buttonContainer}>
-            {Buttons.map(item =>
-                item.event.useEvent ? (
-                    <button key={item.value} className={button[item.style]} onClick={() => getClickEvent(item)}>
-                        {item.value}
-                    </button>
-                ) : (
-                    <button key={item.value} className={button[item.style]}>
-                        {item.value}
-                    </button>
-                ),
-            )}
-        </div>
-    );
+    return <button className={button[style]}>{value}</button>;
 };
 
 export default Button;

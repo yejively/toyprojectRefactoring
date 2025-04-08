@@ -17,6 +17,6 @@ export const Buttons = [
     { value: '+', style: 'operator', event: { type: 'operator', useEvent: true } },
     { value: '.', style: 'default', event: { type: null, useEvent: false } },
     { value: '0', style: 'default', event: { type: 'number', useEvent: true } },
-    { value: null, style: 'delete', event: { type: 'delete', useEvent: true } },
+    { value: 'del', style: 'delete', event: { type: 'delete', useEvent: true } },
     { value: '=', style: 'equal', event: { type: 'equal', useEvent: true } },
 ];

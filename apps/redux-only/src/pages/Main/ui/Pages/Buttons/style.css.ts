@@ -29,10 +29,11 @@ export const button = styleVariants({
     delete: [
         buttonBase,
         {
-            backgroundColor: '#Se1e4e5',
+            backgroundColor: '#e1e4e5',
             backgroundImage: 'url("/delete.png")',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
+            color: 'transparent',
         },
     ],
 });
