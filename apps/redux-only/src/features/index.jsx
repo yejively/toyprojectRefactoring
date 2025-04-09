@@ -1,1 +1,1 @@
-export { handleOperatorPrecedence } from './calculate';
+export { handelType } from './calculate';
