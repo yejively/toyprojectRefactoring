@@ -1,0 +1,1 @@
+export { handelType } from './calculate';

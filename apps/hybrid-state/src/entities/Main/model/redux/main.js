@@ -1,18 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { TestApi } from '@/entities/Main';
+import { handelType } from '@/features';
 
-export const initialState = {
-    isTest: false,
-    isSetTest: null,
+const initialState = {
+    history: '',
+    display: '',
+    result: '',
+    operator: { value: '', type: null },
+    init: false,
+    del: false,
+    equal: false,
+    test: '',
 };
 
 const mainSlice = createSlice({
     name: 'main',
     initialState,
     reducers: {
-        mainStoreReset: () => initialState,
-        dataChange: (state, action) => {
-            state.isTest = action.payload;
+        buttonAction: (state, action) => {
+            handelType(state, action.payload);
         },
     },
     extraReducers: builder =>
