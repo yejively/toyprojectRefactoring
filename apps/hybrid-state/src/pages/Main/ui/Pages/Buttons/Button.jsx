@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { mainSlice } from '@/entities/Main';
+import { TestApi } from '@/entities/Main';
 import { button } from './style.css';
 
 const Button = ({ info }) => {
@@ -8,10 +8,12 @@ const Button = ({ info }) => {
         style,
         event: { useEvent, type },
     } = info;
+
     const dispatch = useDispatch();
 
     const clickHandler = () => {
-        dispatch(mainSlice.actions.buttonAction({ value, type }));
+        dispatch(TestApi({ value, type }));
+        // dispatch(mainSlice.actions.buttonAction({ value, type }));
     };
 
     return useEvent ? (

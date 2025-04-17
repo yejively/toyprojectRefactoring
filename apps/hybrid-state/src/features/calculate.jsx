@@ -62,7 +62,7 @@ const updateOperator = (state, value) => {
         const previousResult = state.result;
         // 리셋
         init(state);
-        updateNumber(previousResult);
+        updateNumber(state, previousResult);
         state.history += value;
     } else {
         // 연산자 입력 처리
@@ -103,9 +103,6 @@ export const handelType = (state, { value, type }) => {
             break;
         case 'equal':
             updateResult(state);
-            break;
-        case 'test':
-            console.log("Test");
             break;
         default:
             init(state);

@@ -10,27 +10,18 @@ const initialState = {
     init: false,
     del: false,
     equal: false,
-    test: '',
 };
 
 const mainSlice = createSlice({
     name: 'main',
     initialState,
-    reducers: {
-        buttonAction: (state, action) => {
-            handelType(state, action.payload);
-        },
-    },
     extraReducers: builder =>
         builder
-            .addCase(TestApi.pending, state => {
-                state.isSetTest = '대기중';
+            .addCase(TestApi.fulfilled, (state, action) => {
+                handelType(state, action.payload);
             })
-            .addCase(TestApi.fulfilled, state => {
-                state.isSetTest = '성공';
-            })
-            .addCase(TestApi.rejected, action => {
-                console.log('getVoyNoList rejected e: ', action.error);
+            .addCase(TestApi.rejected, (state) => {
+                state.result = 'error';
             })
             .addDefaultCase(state => state),
 });
