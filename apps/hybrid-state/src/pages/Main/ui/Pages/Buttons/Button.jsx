@@ -13,7 +13,6 @@ const Button = ({ info }) => {
 
     const clickHandler = () => {
         dispatch(TestApi({ value, type }));
-        // dispatch(mainSlice.actions.buttonAction({ value, type }));
     };
 
     return useEvent ? (

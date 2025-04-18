@@ -18,10 +18,11 @@ const mainSlice = createSlice({
     extraReducers: builder =>
         builder
             .addCase(TestApi.fulfilled, (state, action) => {
+                // TestApi는 Promise를 반환하지만, extraReducers안의 action은 Promise가 아닌 Redux 액션 객체
                 handelType(state, action.payload);
             })
-            .addCase(TestApi.rejected, (state) => {
-                state.result = 'error';
+            .addCase(TestApi.rejected, (state, action) => {
+                state.result = action.payload;
             })
             .addDefaultCase(state => state),
 });
