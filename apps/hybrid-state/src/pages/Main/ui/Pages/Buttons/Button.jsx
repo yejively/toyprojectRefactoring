@@ -25,5 +25,3 @@ const Button = ({ info }) => {
 };
 
 export default Button;
-
-
