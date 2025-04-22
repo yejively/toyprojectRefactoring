@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { delayedFetch } from '@/entities/Main';
+import { mainSlice } from '@/entities/Main';
 import { button } from './style.css';
 
 const Button = ({ info }) => {
@@ -8,11 +8,10 @@ const Button = ({ info }) => {
         style,
         event: { useEvent, type },
     } = info;
-
     const dispatch = useDispatch();
 
     const clickHandler = () => {
-        dispatch(delayedFetch({ value, type }));
+        dispatch(mainSlice.actions.buttonAction({ value, type }));
     };
 
     return useEvent ? (
@@ -25,3 +24,5 @@ const Button = ({ info }) => {
 };
 
 export default Button;
+
+

@@ -1,4 +1,4 @@
-const Buttons = [
+export const Buttons = [
     { value: 'C', style: 'init', event: { type: 'init', useEvent: true } },
     { value: '%', style: 'default', event: { type: null, useEvent: false } },
     { value: '()', style: 'default', event: { type: null, useEvent: false } },
@@ -20,5 +20,3 @@ const Buttons = [
     { value: 'del', style: 'delete', event: { type: 'delete', useEvent: true } },
     { value: '=', style: 'equal', event: { type: 'equal', useEvent: true } },
 ];
-
-export default Buttons;

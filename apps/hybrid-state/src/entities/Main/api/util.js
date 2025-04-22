@@ -1,1 +1,1 @@
-export { delayedFetch } from './redux/main';
+export { TestApi } from './redux/main';
