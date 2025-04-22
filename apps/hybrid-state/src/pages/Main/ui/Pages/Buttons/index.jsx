@@ -1,12 +1,25 @@
 import React from 'react';
-import Buttons from './config';
+import { useDispatch } from 'react-redux';
+import { mainSlice } from '@/entities/Main';
+import { Buttons } from './config';
 import Button from './Button';
 import { buttonContainer } from './style.css';
 
 const ButtonContainer = () => {
+    const dispatch = useDispatch();
+
+    const clickHandler = e => {
+        if (e.target.tagName !== 'BUTTON' || e.target.dataset.event === 'false') return;
+
+        const { value, type } = e.target.dataset;
+        dispatch(mainSlice.actions.buttonAction({ value, type }));
+    };
+
     return (
-        <div className={buttonContainer}>
-            {Buttons.map(item => <Button key={item.value} info={item} />)}
+        <div className={buttonContainer} onClick={clickHandler}>
+            {Buttons.map(item => (
+                <Button key={item.value} info={item} />
+            ))}
         </div>
     );
 };

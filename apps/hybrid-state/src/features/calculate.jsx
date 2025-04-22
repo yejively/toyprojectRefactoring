@@ -1,6 +1,6 @@
 const OPERATOR = ['÷', '×', '-', '+'];
 
-// 계산 함수
+// 계산 처리 함수
 const performOperation = (oper, numOne, numTwo) => {
     const n1 = Number(numOne);
     const n2 = Number(numTwo);
@@ -19,7 +19,6 @@ const performOperation = (oper, numOne, numTwo) => {
     }
 };
 
-// 연산자 우선순위 처리 함수
 const handleOperatorPrecedence = (numArr, operArr, operatorsToProcess) => {
     let i = 0;
     while (i < operArr.length) {
@@ -33,49 +32,7 @@ const handleOperatorPrecedence = (numArr, operArr, operatorsToProcess) => {
         }
     }
 };
-
-const init = state => {
-    state.history = '';
-    state.display = '';
-    state.result = '';
-    state.operator = { value: '', type: null };
-    state.init = false;
-    state.del = false;
-    state.equal = false;
-};
-
-const updateNumber = (state, value) => {
-    if (state.result) return;
-
-    state.display = value;
-    state.history += value;
-};
-
-const updateOperator = (state, value) => {
-    if (!state.history) return;
-
-    if (OPERATOR.includes(state.history.slice(-1))) {
-        // 연산자 교체
-        state.history = state.history.slice(0, -1) + value;
-    } else if (state.result) {
-        // 결과 값이 있고 연산자 클릭 시 결과값에 새로운 계산 시작
-        const previousResult = state.result;
-        // 리셋
-        init(state);
-        updateNumber(previousResult);
-        state.history += value;
-    } else {
-        // 연산자 입력 처리
-        state.history += value;
-    }
-};
-
-const handelDelete = state => {
-    if (!state.history || state.result) return;
-
-    state.display = '';
-    state.history = state.history.slice(0, -1);
-};
+// 계산 처리 함수
 
 const updateResult = state => {
     if (!state.history || OPERATOR.includes(state.history.slice(-1))) return;
@@ -88,6 +45,50 @@ const updateResult = state => {
 
     state.result = `${numArr[0]}`;
     state.history = `${state.history}=`;
+};
+
+const init = state => {
+    state.history = '';
+    state.display = '';
+    state.result = '';
+    state.operator = { value: '', type: null };
+    state.init = false;
+    state.del = false;
+    state.equal = false;
+};
+
+const updateNumber = (state, value) => {
+    if (state.result) init(state);
+    state.display = value;
+    state.history += value;
+};
+
+const resetWithResult = state => {
+    const previousResult = state.result;
+    init(state);
+    updateNumber(state, previousResult);
+};
+
+const isLastCharOperator = state => {
+    return OPERATOR.includes(state.history.slice(-1));
+};
+
+const updateOperator = (state, value) => {
+    if (!state.history) return;
+
+    if (isLastCharOperator(state)) {
+        state.history = state.history.slice(0, -1) + value;
+    } else {
+        if (state.result) resetWithResult(state);
+        state.history += value;
+    }
+};
+
+const handelDelete = state => {
+    if (!state.history || state.result) return;
+
+    state.display = '';
+    state.history = state.history.slice(0, -1);
 };
 
 export const handelType = (state, { value, type }) => {

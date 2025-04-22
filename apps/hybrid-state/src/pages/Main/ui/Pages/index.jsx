@@ -1,5 +1,5 @@
-import ButtonContainer from './Buttons/ButtonContainer';
-import Field from './Fields/Field';
+import ButtonContainer from './Buttons';
+import Field from './Fields';
 import { container, calculator } from './style.css';
 
 const Main = () => {

@@ -1,28 +1,17 @@
-import { useDispatch } from 'react-redux';
-import { mainSlice } from '@/entities/Main';
 import { button } from './style.css';
 
 const Button = ({ info }) => {
     const {
         value,
         style,
-        event: { useEvent, type },
+        event: { type, useEvent },
     } = info;
-    const dispatch = useDispatch();
 
-    const clickHandler = () => {
-        dispatch(mainSlice.actions.buttonAction({ value, type }));
-    };
-
-    return useEvent ? (
-        <button className={button[style]} onClick={clickHandler}>
+    return (
+        <button className={button[style]} data-value={value} data-type={type} data-event={useEvent}>
             {value}
         </button>
-    ) : (
-        <button className={button[style]}>{value}</button>
     );
 };
 
 export default Button;
-
-
