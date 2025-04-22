@@ -17,6 +17,9 @@ const mainSlice = createSlice({
     initialState,
     extraReducers: builder =>
         builder
+            .addCase(TestApi.pending, () => {
+                console.log("pending");
+            })
             .addCase(TestApi.fulfilled, (state, action) => {
                 // TestApi는 Promise를 반환하지만, extraReducers안의 action은 Promise가 아닌 Redux 액션 객체
                 handelType(state, action.payload);
