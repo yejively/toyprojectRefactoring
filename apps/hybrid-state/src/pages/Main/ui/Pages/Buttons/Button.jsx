@@ -1,5 +1,5 @@
 import { useDispatch } from 'react-redux';
-import { TestApi } from '@/entities/Main';
+import { delayedFetch } from '@/entities/Main';
 import { button } from './style.css';
 
 const Button = ({ info }) => {
@@ -12,7 +12,7 @@ const Button = ({ info }) => {
     const dispatch = useDispatch();
 
     const clickHandler = () => {
-        dispatch(TestApi({ value, type }));
+        dispatch(delayedFetch({ value, type }));
     };
 
     return useEvent ? (

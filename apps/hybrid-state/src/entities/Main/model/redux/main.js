@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { TestApi } from '@/entities/Main';
+import { delayedFetch } from '@/entities/Main';
 import { handelType } from '@/features';
 
 const initialState = {
@@ -17,14 +17,14 @@ const mainSlice = createSlice({
     initialState,
     extraReducers: builder =>
         builder
-            .addCase(TestApi.pending, () => {
+            .addCase(delayedFetch.pending, () => {
                 console.log("pending");
             })
-            .addCase(TestApi.fulfilled, (state, action) => {
-                // TestApi는 Promise를 반환하지만, extraReducers안의 action은 Promise가 아닌 Redux 액션 객체
+            .addCase(delayedFetch.fulfilled, (state, action) => {
+                // delayedFetch는 Promise를 반환하지만, extraReducers안의 action은 Promise가 아닌 Redux 액션 객체
                 handelType(state, action.payload);
             })
-            .addCase(TestApi.rejected, (state, action) => {
+            .addCase(delayedFetch.rejected, (state, action) => {
                 state.result = action.payload;
             })
             .addDefaultCase(state => state),

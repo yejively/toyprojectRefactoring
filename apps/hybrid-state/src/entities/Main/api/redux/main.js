@@ -1,7 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 
 function timer() {
-    // setTimeout 시간 지연 함수를 promise 형태로 반환해줘야함
     return new Promise(resolve => {
         setTimeout(() => {
             resolve();
@@ -9,14 +8,11 @@ function timer() {
     });
 }
 
-export const TestApi = createAsyncThunk('Test', async (data, { rejectWithValue }) => {
-    // data: 파라미터로 넘겨준 객체 {value, type}
-    // { rejectWithValue }: thunkApi 객체의 property
+export const delayedFetch = createAsyncThunk('Test', async (data, { rejectWithValue }) => {
     try {
         await timer();
         if (data === null || data === undefined) throw new Error("Error");
         else return data;
-        // 내부적으로 Promise.resolve(data)로 감싸져서 반환
     } catch (error) {
         return rejectWithValue(error.message);
     }
