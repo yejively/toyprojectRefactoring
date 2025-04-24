@@ -9,14 +9,17 @@ export const display = style({
     fontWeight: 500,
     lineHeight: 1.2,
     color: '#000',
-    paddingBottom: 30,
+    width: 340,
+    margin: '0 auto',
 });
 
 export const history = style({
     display: "flex",
-    alignItems: 'center',
+    alignItems: 'end',
     justifyContent: 'end',
-    height: 23,
+    height: 87,
     fontSize: 21,
     color: '#000',
+    width: 340,
+    margin: '0 auto',
 });

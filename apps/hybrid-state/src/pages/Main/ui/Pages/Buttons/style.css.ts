@@ -2,10 +2,12 @@ import { style, styleVariants } from '@vanilla-extract/css';
 
 export const buttonContainer = style({
     display: 'grid',
-    justifyContent: 'center',
     gridTemplateRows: 'repeat(5, 70px)',
     gridTemplateColumns: 'repeat(4, 70px)',
     gap: 20,
+    width: 340,
+    height: 470,
+    margin: '0 auto',
 });
 
 const buttonBase = style({
