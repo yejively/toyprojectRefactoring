@@ -1,25 +1,13 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { TestApi } from '@/entities/Main';
-import { handelType } from '@/features';
 
 const initialState = {
-    history: '',
-    display: '',
-    result: '',
-    operator: { value: '', type: null },
-    init: false,
-    del: false,
-    equal: false,
+    buttons: null,
 };
 
 const mainSlice = createSlice({
     name: 'main',
     initialState,
-    reducers: {
-        buttonAction: (state, action) => {
-            handelType(state, action.payload);
-        },
-    },
     extraReducers: builder =>
         builder
             .addCase(TestApi.pending, state => {

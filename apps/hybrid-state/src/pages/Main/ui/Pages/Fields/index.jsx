@@ -1,11 +1,13 @@
 import History from './History';
 import Display from './Display';
 
-const Field = () => {
+const Field = ({ fieldValue }) => {
+    const { history, display, result } = fieldValue;
+
     return (
         <>
-            <History />
-            <Display />
+            <History historyValue={history} />
+            <Display displayValue={{ display, result }} />
         </>
     );
 };

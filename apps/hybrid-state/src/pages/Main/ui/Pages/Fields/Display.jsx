@@ -1,13 +1,9 @@
-import { useSelector } from 'react-redux';
 import { display } from './style.css';
 
-const Display = () => {
-    const displayValue = useSelector(state => state.main.display);
-    const result = useSelector(state => state.main.result);
-
+const Display = ({ displayValue }) => {
     return (
         <>
-            <div className={display}>{result || displayValue}</div>
+            <div className={display}>{displayValue.result || displayValue.display}</div>
         </>
     );
 };
