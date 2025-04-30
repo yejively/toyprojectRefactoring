@@ -1,17 +1,10 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-function timer() {
-    return new Promise(resolve => {
-        setTimeout(() => {
-            resolve();
-        }, 1000);
-    });
-}
-
-export const TestApi = createAsyncThunk('Test', async (data, { rejectWithValue }) => {
+export const TestApi = createAsyncThunk('Test', async (_, { rejectWithValue }) => {
     try {
-        const response = await timer();
-        return response;
+        const res = await axios.get('/data/buttons.json');
+        return res.data;
     } catch (error) {
         return rejectWithValue(error.response.data);
     }

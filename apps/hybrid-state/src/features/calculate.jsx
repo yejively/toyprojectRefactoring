@@ -43,20 +43,20 @@ const updateResult = state => {
     handleOperatorPrecedence(numArr, operArr, ['×', '÷']);
     handleOperatorPrecedence(numArr, operArr, ['+', '-']);
 
-    state.setResult(`${numArr[0]}`);
-    state.setHistory(`${state.history}=`);
+    state.result = `${numArr[0]}`;
+    state.history = `${state.history}=`;
 };
 
 const init = state => {
-    state.setHistory('');
-    state.setDisplay('');
-    state.setResult('');
+    state.history = '';
+    state.display = '';
+    state.result = '';
 };
 
 const updateNumber = (state, value) => {
     if (state.result) init(state);
-    state.setDisplay(value);
-    state.setHistory(prev => prev + value);
+    state.display = value;
+    state.history += value;
 };
 
 const resetWithResult = state => {
@@ -73,18 +73,18 @@ const updateOperator = (state, value) => {
     if (!state.history) return;
 
     if (isLastCharOperator(state)) {
-        state.setHistory(state.history.slice(0, -1) + value);
+        state.history = state.history.slice(0, -1) + value;
     } else {
         if (state.result) resetWithResult(state);
-        state.setHistory(prev => prev + value);
+        state.history += value;
     }
 };
 
 const handelDelete = state => {
     if (!state.history || state.result) return;
 
-    state.setDisplay('');
-    state.setHistory(state.history.slice(0, -1));
+    state.display = '';
+    state.history = state.history.slice(0, -1);
 };
 
 export const handelType = (state, { value, type }) => {

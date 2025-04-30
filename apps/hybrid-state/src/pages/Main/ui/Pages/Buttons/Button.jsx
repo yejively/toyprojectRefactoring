@@ -1,3 +1,4 @@
+import React from 'react';
 import { button } from './style.css';
 
 const Button = ({ info }) => {
@@ -14,4 +15,5 @@ const Button = ({ info }) => {
     );
 };
 
-export default Button;
+// React.memo props가 변경되지 않으면, 이전 렌더링 결과를 재사용하여 성능을 최적화
+export default React.memo(Button);

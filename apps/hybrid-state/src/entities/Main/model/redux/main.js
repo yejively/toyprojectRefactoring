@@ -1,20 +1,29 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { TestApi } from '@/entities/Main';
+import { handelType } from '@/features';
 
 const initialState = {
-    buttons: null,
+    buttons: [],
+    history: '',
+    display: '',
+    result: '',
 };
 
 const mainSlice = createSlice({
     name: 'main',
     initialState,
+    reducers: {
+        buttonAction: (state, action) => {
+            handelType(state, action.payload);
+        },
+    },
     extraReducers: builder =>
         builder
-            .addCase(TestApi.pending, state => {
-                state.isSetTest = '대기중';
+            .addCase(TestApi.pending, () => {
+                console.log("pending");
             })
-            .addCase(TestApi.fulfilled, state => {
-                state.isSetTest = '성공';
+            .addCase(TestApi.fulfilled, (state, action) => {
+                state.buttons = action.payload;
             })
             .addCase(TestApi.rejected, action => {
                 console.log('getVoyNoList rejected e: ', action.error);
