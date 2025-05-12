@@ -1,4 +1,3 @@
-import React from 'react';
 import { button } from './style.css';
 
 const Button = ({ info }) => {
