@@ -9,7 +9,6 @@ const ButtonContainer = () => {
 
     const clickHandler = e => {
         if (e.target.tagName !== 'BUTTON' || e.target.dataset.event === 'false') return;
-
         const { value, type } = e.target.dataset;
         dispatch(mainSlice.actions.buttonAction({ value, type }));
     };
