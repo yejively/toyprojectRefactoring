@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
+    <defs>
+        <linearGradient id="a" x1="1" x2="0" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#01fbb7"/>
+            <stop offset="1" stop-color="#006fff"/>
+        </linearGradient>
+    </defs>
+    <g transform="translate(-94 -94)">
+        <rect data-name="사각형 4895" width="32" height="32" rx="6" transform="translate(94 94)" style="fill:url(#a)"/>
+        <path data-name="빼기 1" d="M-41-973h-12a2 2 0 0 1-2-2v-16a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v16a2 2 0 0 1-2 2zm-10-8a1 1 0 0 0-1 1 1 1 0 0 0 1 1h5a1 1 0 0 0 1-1 1 1 0 0 0-1-1zm0-3a1 1 0 0 0-1 1 1 1 0 0 0 1 1h8a1 1 0 0 0 1-1 1 1 0 0 0-1-1zm0-3a1 1 0 0 0-1 1 1 1 0 0 0 1 1h8a1 1 0 0 0 1-1 1 1 0 0 0-1-1zm0-3a1 1 0 0 0-1 1 1 1 0 0 0 1 1h8a1 1 0 0 0 1-1 1 1 0 0 0-1-1z" transform="translate(157 1093)" style="fill:#fff"/>
+    </g>
+</svg>

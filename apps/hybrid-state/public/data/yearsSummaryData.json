@@ -1,0 +1,57 @@
+[
+    {
+        "year": 2024,
+        "distanceTravelled": 27488,
+        "avgSpeed": 11.71,
+        "totalCo2Emission": 16394,
+        "requiredCii": 6.966,
+        "attainedCii": 12.911,
+        "ciiRatingValue": 1.853399,
+        "ciiRatingPercentValue": 185.34,
+        "ciiLabel": "E"
+    },
+    {
+        "year": 2023,
+        "distanceTravelled": 58654.95,
+        "avgSpeed": 12.51,
+        "totalCo2Emission": 18209,
+        "requiredCii": 7.116,
+        "attainedCii": 6.72,
+        "ciiRatingValue": 0.944365,
+        "ciiRatingPercentValue": 94.437,
+        "ciiLabel": "C"
+    },
+    {
+        "year": 2022,
+        "distanceTravelled": 2948.06,
+        "avgSpeed": 10.66,
+        "totalCo2Emission": 1014,
+        "requiredCii": 7.266,
+        "attainedCii": 7.449,
+        "ciiRatingValue": 1.025121,
+        "ciiRatingPercentValue": 102.512,
+        "ciiLabel": "C"
+    },
+    {
+        "year": 2021,
+        "distanceTravelled": 58874,
+        "avgSpeed": 11.99,
+        "totalCo2Emission": 18516,
+        "requiredCii": 7.341,
+        "attainedCii": 6.808,
+        "ciiRatingValue": 0.927394,
+        "ciiRatingPercentValue": 92.739,
+        "ciiLabel": "B"
+    },
+    {
+        "year": 2020,
+        "distanceTravelled": 63052,
+        "avgSpeed": 11.53,
+        "totalCo2Emission": 19965,
+        "requiredCii": 7.416,
+        "attainedCii": 6.855,
+        "ciiRatingValue": 0.924353,
+        "ciiRatingPercentValue": 92.435,
+        "ciiLabel": "B"
+    }
+]

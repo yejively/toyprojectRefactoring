@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 22 22">
+    <defs>
+        <linearGradient id="zauqe070qa" x1=".5" x2=".5" y2="1" gradientUnits="objectBoundingBox">
+            <stop offset="0" stop-color="#ffc858"/>
+            <stop offset="1" stop-color="#ff9d1f"/>
+        </linearGradient>
+    </defs>
+    <g transform="translate(7031 11240)">
+        <rect data-name="사각형 3018" width="22" height="22" rx="4" transform="translate(-7031 -11240)" style="fill:url(#zauqe070qa)"/>
+        <text transform="translate(-7020 -11223)" style="fill:#fff;font-size:16px;font-family:Roboto-Medium,Roboto;font-weight:500"><tspan x="-5.223" y="0">C</tspan></text>
+    </g>
+</svg>

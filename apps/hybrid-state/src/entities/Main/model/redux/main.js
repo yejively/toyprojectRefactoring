@@ -1,32 +1,48 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { TestApi } from '@/entities/Main';
-import { handelType } from '@/features';
+import { getYearList, getSummaryData, getMainTableData } from '@/entities/Main';
+import { processYearData } from '@/features';
 
-const initialState = {
-    buttons: [],
-    history: '',
-    display: '',
-    result: '',
+export const initialState = {
+    pageCode: null,
+    currentYear: null,
 };
 
 const mainSlice = createSlice({
     name: 'main',
     initialState,
     reducers: {
-        buttonAction: (state, action) => {
-            handelType(state, action.payload);
+        mainStoreReset: () => initialState,
+        dataChange: (state, action) => {
+            state.isTest = action.payload;
+        },
+        setPageCode: (state, action) => {
+            state.pageCode = action.payload;
+        },
+        changeYear: (state, action) => {
+            const type = action.payload;
+
+            if (type === 'prev') state.currentYear = state.currentYear - 1;
+            else state.currentYear = state.currentYear + 1;
         },
     },
     extraReducers: builder =>
         builder
-            .addCase(TestApi.pending, () => {
-                console.log("pending");
+            .addCase(getYearList.pending, () => {})
+            .addCase(getYearList.fulfilled, (state, action) => {
+                state.currentYear = processYearData(action.payload);
             })
-            .addCase(TestApi.fulfilled, (state, action) => {
-                state.buttons = action.payload;
+            .addCase(getYearList.rejected, action => {
+                console.log('getYearList rejected e: ', action.error);
             })
-            .addCase(TestApi.rejected, action => {
-                console.log('getVoyNoList rejected e: ', action.error);
+            .addCase(getSummaryData.pending, () => {})
+            .addCase(getSummaryData.fulfilled, () => {})
+            .addCase(getSummaryData.rejected, action => {
+                console.log('getSummaryData rejected e: ', action.error);
+            })
+            .addCase(getMainTableData.pending, () => {})
+            .addCase(getMainTableData.fulfilled, () => {})
+            .addCase(getMainTableData.rejected, action => {
+                console.log('getMainTableData rejected e: ', action.error);
             })
             .addDefaultCase(state => state),
 });

@@ -1,1 +1,1 @@
-export { TestApi } from './redux/main';
+export * from './redux/main';

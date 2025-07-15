@@ -1,21 +1,23 @@
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { TestApi } from '@/entities/Main';
-import ButtonContainer from './Buttons';
-import Field from './Fields';
-import { calculator } from './style.css';
+import { getYearList, mainSlice } from '@/entities/Main';
+import { Header } from '@/pages/Main/ui/Header';
+import { Content } from '@/pages/Main/ui/Content';
+import { usePageCode } from '@/shared';
 
 const Main = () => {
     const dispatch = useDispatch();
+    const pathname = usePageCode();
 
     useEffect(() => {
-        dispatch(TestApi());
-    }, []);
+        dispatch(mainSlice.actions.setPageCode(pathname));
+        dispatch(getYearList());
+    }, [pathname]); // 단일화
 
     return (
-        <div className={calculator}>
-            <Field />
-            <ButtonContainer />
+        <div>
+            <Header />
+            <Content />
         </div>
     );
 };

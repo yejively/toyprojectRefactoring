@@ -28,8 +28,17 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
+/* html, body height 고정 */
+html, body {
+	height: 100%;
+	overflow: hidden;
+}
 body {
 	line-height: 1;
+	/* display: flex;
+	flex-direction: column; */
+	background-color: #e1e4ea;
+	font-family: 'Roboto, Arial, sans-serif';
 }
 ol, ul {
 	list-style: none;
@@ -45,4 +54,7 @@ q:before, q:after {
 table {
 	border-collapse: collapse;
 	border-spacing: 0;
+}
+* {
+	box-sizing: border-box;
 }
