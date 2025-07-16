@@ -1,12 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { mainSlice } from '@/entities/Main';
-import { config } from '@/config';
+import { mainSlice } from '../../lib';
 import YearBox from './year';
 
-const SwitchWrapper = ({ pageCode }) => {
+const SwitchWrapper = ({ config }) => {
     const dispatch = useDispatch();
     const currentYear = useSelector(state => state.main.currentYear);
-    const { switchUse } = config[pageCode];
+    const { switchUse } = config;
 
     const yearClickHandler = e => {
         const type = e.target.id;

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { getYearList, getSummaryData, getMainTableData } from '@/entities/Main';
 import processYearData from '@/components/CII/Header/lib/processYearData';
+import { getYearList, getSummaryData, getMainTableData } from '@/components/CII/lib';
 
 export const initialState = {
     pageCode: null,

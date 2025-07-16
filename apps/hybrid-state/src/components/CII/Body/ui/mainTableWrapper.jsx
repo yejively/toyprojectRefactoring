@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { useState, useEffect } from 'react';
-import { getMainTableData } from '@/entities/Main';
+import { getMainTableData } from '../../lib';
 import parsingMainTableData from '../lib/processMainTableData';
 import PanelWrapper from './panelWrapper';
 import { mainTable, mainTableWrapper } from './style.css';
@@ -35,10 +35,3 @@ const MainTableWrapper = ({ parsingTableHeader }) => {
 };
 
 export default MainTableWrapper;
-
-// 1. 폴더구조
-// 2. 디스패치 통합화
-// 3. 망명규칙
-// 4. 페이지단으로하기
-// 5. key 값 idx 삭제
-// 6. 6.23 코드리뷰

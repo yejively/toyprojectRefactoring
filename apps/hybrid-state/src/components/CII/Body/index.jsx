@@ -1,2 +1,13 @@
-export { default as Summary } from './ui/summary';
-export { default as Monitoring } from './ui/monitoring';
+import Summary from './ui/summary';
+import Monitoring from './ui/monitoring';
+
+const Body = () => {
+    return (
+        <div>
+            <Summary />
+            <Monitoring />
+        </div>
+    );
+};
+
+export default Body;

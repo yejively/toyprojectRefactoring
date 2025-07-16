@@ -1,10 +1,12 @@
+import { useSelector } from 'react-redux';
 import { config } from '@/config';
-import usePageCode from '@/hooks';
 import TableHeaderWrapper from './tableHeaderWrapper';
 import MainTableWrapper from './mainTableWrapper';
 
 const Monitoring = () => {
-    const pageCode = usePageCode();
+    const pageCode = useSelector(state => state.main.pageCode);
+    if (!pageCode) return;
+
     const tableHeaderData = config[pageCode].tab.monitoring.tableHeader;
     const parsingTableHeader = Object.keys(tableHeaderData);
 

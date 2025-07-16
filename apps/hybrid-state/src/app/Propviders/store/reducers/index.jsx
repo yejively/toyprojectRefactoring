@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { mainSlice } from '@/entities/Main';
+import { mainSlice } from '@/components/CII/lib';
 
 const rootReducer = (state, action) => {
     const combinedReducer = combineReducers({

@@ -1,9 +1,9 @@
+import { useSelector } from 'react-redux';
 import { config } from '@/config';
-import usePageCode from '@/hooks';
 import Text from './text';
 
 const SummaryTextWrapper = ({ textObj }) => {
-    const pageCode = usePageCode();
+    const pageCode = useSelector(state => state.main.pageCode);
     const { summaryTitle } = config[pageCode].tab.monitoring;
     const summaryKeys = Object.keys(summaryTitle);
 

@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
-import { getSummaryData } from '@/entities/Main';
+import { getSummaryData } from '../../lib';
 import Year from './year';
 import Level from './level';
 import SummaryTextWrapper from './summaryWrapper';
