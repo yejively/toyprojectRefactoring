@@ -16,7 +16,7 @@ const Main = () => {
     return (
         <div>
             {loading ? (
-                <div>로딩중</div>
+                <div>roading...</div>
             ) : (
                 <>
                     <Header />

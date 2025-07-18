@@ -47,3 +47,9 @@ export const initApp = () => async (dispatch, getState) => {
         dispatch(mainSlice.actions.setLoading(false));
     }
 };
+
+// await new Promise((resolve) => {
+//     setTimeout(() => {
+//         resolve();
+//     }, 1500);
+// });
