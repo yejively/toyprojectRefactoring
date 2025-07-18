@@ -1,22 +1,24 @@
 import { createSlice } from '@reduxjs/toolkit';
 import processYearData from '@/components/CII/Header/lib/processYearData';
-import { getYearList, getSummaryData, getMainTableData } from '@/components/CII/lib';
+import { getYearList, getContentData } from '@/components/CII/lib';
 
 export const initialState = {
-    pageCode: null,
+    loading: false,
+    error: { type: false, message: null },
     currentYear: null,
+    summaryData: null,
+    mainTableData: null,
 };
 
 const mainSlice = createSlice({
     name: 'main',
     initialState,
     reducers: {
-        mainStoreReset: () => initialState,
+        setLoading: (state, action) => {
+            state.loading = action.payload;
+        },
         dataChange: (state, action) => {
             state.isTest = action.payload;
-        },
-        setPageCode: (state, action) => {
-            state.pageCode = action.payload;
         },
         changeYear: (state, action) => {
             const type = action.payload;
@@ -31,20 +33,20 @@ const mainSlice = createSlice({
             .addCase(getYearList.fulfilled, (state, action) => {
                 state.currentYear = processYearData(action.payload);
             })
-            .addCase(getYearList.rejected, action => {
-                console.log('getYearList rejected e: ', action.error);
+            .addCase(getYearList.rejected, (state, action) => {
+                state.error.type = true;
+                state.error.message = action.payload;
             })
-            .addCase(getSummaryData.pending, () => {})
-            .addCase(getSummaryData.fulfilled, () => {})
-            .addCase(getSummaryData.rejected, action => {
-                console.log('getSummaryData rejected e: ', action.error);
+            .addCase(getContentData.pending, () => {})
+            .addCase(getContentData.fulfilled, (state, action) => {
+                const { summaryData, mainTableData } = action.payload;
+                state.summaryData = summaryData;
+                state.mainTableData = mainTableData;
             })
-            .addCase(getMainTableData.pending, () => {})
-            .addCase(getMainTableData.fulfilled, () => {})
-            .addCase(getMainTableData.rejected, action => {
-                console.log('getMainTableData rejected e: ', action.error);
-            })
-            .addDefaultCase(state => state),
+            .addCase(getContentData.rejected, (state, action) => {
+                state.error.type = true;
+                state.error.message = action.payload;
+            }),
 });
 
 export default mainSlice;

@@ -4,7 +4,7 @@ const parsingMainTableData = (parsingTableHeader, responseData) => {
         parsingTableHeader.forEach(header => {
             parsedRow[header] = data[header];
         });
-        parsedRow.id = idx;
+        parsedRow.id = `panel_${idx}`;
         return parsedRow;
     });
 

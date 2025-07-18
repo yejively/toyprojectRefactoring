@@ -1,13 +1,11 @@
-import { useSelector } from 'react-redux';
 import { config } from '@/config';
+import { usePageCode } from '../lib';
 import Container from './ui/container';
 import Tabs from './ui/tabs';
 import { header } from './style.css';
 
 const Header = () => {
-    const pageCode = useSelector(state => state.main.pageCode);
-    if (!pageCode) return;
-
+    const pageCode = usePageCode();
     const pageConfig = config[pageCode];
 
     return (

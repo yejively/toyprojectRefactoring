@@ -1,20 +1,17 @@
 import Panel from './panel';
-import { panelWrapper, exDiv } from './style.css';
+import LegTimeLine from './legTimeLine';
+import Dropdown from './dropdown';
+import { panelWrapper } from './style.css';
 
-const PanelWrapper = ({ myKey, rowData }) => {
-    const dataValue = Object.values(rowData);
-    let idx = -1;
+const PanelWrapper = ({ rowData }) => {
+    const datas = Object.entries(rowData).filter(([key]) => key !== 'id');
 
     return (
         <div className={panelWrapper}>
-            {dataValue.map(value => {
-                idx++;
-                return typeof value === 'object' && value !== null ? (
-                    <div className={exDiv} key={`${myKey}_panel${idx}`}>object</div>
-                ) : (
-                    <Panel key={`${myKey}_panel${idx}`} value={value} />
-                );
+            {datas.map(([key, value]) => {
+                return typeof value === 'object' && value !== null ? <LegTimeLine key={key} value={value} /> : <Panel key={key} value={value} />;
             })}
+            <Dropdown />
         </div>
     );
 };
