@@ -1,9 +1,14 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-import { mainSlice } from "../..";
 
 export const getYearList = createAsyncThunk('yearList', async (_, { rejectWithValue }) => {
     try {
+        await new Promise(resolve => {
+            setTimeout(() => {
+                resolve();
+            }, 1500);
+        });
+
         const res = await axios.get('/data/yearList.json');
         return res.data;
     } catch (error) {
@@ -26,30 +31,3 @@ export const getContentData = createAsyncThunk('contentData', async (year, { rej
         return rejectWithValue('Error code: getContentData error');
     }
 });
-
-/**
- * year, summary, mainTable API 호출을 조합, 흐름 제어
- */
-export const initApp = () => async (dispatch, getState) => {
-    try {
-        dispatch(mainSlice.actions.setLoading(true));
-
-        await dispatch(getYearList());
-        const { currentYear } = getState().main;
-
-        if (currentYear) {
-            await dispatch(getContentData(currentYear));
-        }
-    } catch (error) {
-        // 각 thunk 내부에서 이미 rejected를 트리거하고 있음. 에러 처리 X
-        console.log(error);
-    } finally {
-        dispatch(mainSlice.actions.setLoading(false));
-    }
-};
-
-// await new Promise((resolve) => {
-//     setTimeout(() => {
-//         resolve();
-//     }, 1500);
-// });

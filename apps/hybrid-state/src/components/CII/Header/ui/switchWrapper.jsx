@@ -4,7 +4,7 @@ import YearBox from './year';
 
 const SwitchWrapper = ({ config }) => {
     const dispatch = useDispatch();
-    const currentYear = useSelector(state => state.main.currentYear);
+    const currentYear = useSelector(state => state.main.year.currentYear);
     const { switchUse } = config;
 
     const yearClickHandler = e => {

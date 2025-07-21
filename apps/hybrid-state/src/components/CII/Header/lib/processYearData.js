@@ -1,5 +1,8 @@
 const processYearData = (yearList) => {
-    return yearList.sort((a, b) => b - a)[0];
+    return {
+        firstYear: yearList[0],
+        lastYear: yearList[yearList.length - 1],
+    };
 };
 
 export default processYearData;
