@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { mainSlice } from '../../lib';
+import { getYearChange } from '../lib/yaerClickHandler';
 import YearBox from './year';
 
 const SwitchWrapper = ({ config }) => {
@@ -8,7 +9,7 @@ const SwitchWrapper = ({ config }) => {
     const { switchUse } = config;
 
     const yearClickHandler = e => {
-        const type = e.target.id;
+        const type = getYearChange(e);
         dispatch(mainSlice.actions.changeYear(type));
     };
 
